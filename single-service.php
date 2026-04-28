@@ -162,6 +162,7 @@ $contact_url = home_url("/#contacts");
             "lead" =>
                 "Вы получите готовые документы без необходимости разбираться в процессе",
             "image" => "/assets/images/back_1.png",
+            "mobile_image" => "/assets/images/mobile_offer_1.png",
             "items" => [
                 "Не нужно изучать требования и документы",
                 "Всё оформим в одном месте",
@@ -174,6 +175,7 @@ $contact_url = home_url("/#contacts");
             "lead" =>
                 "Стабильное оформление без срывов сроков и лишних вопросов",
             "image" => "/assets/images/back_2.png",
+            "mobile_image" => "/assets/images/mobile_offer_2.png",
             "items" => [
                 "Быстрое оформление под поток автомобилей",
                 "Работаем как надежный партнер",
@@ -238,14 +240,26 @@ $contact_url = home_url("/#contacts");
                             <?php endforeach; ?>
                         </ul>
                         <div class="offer-card__image-wrap">
-                            <img
-                              class="offer-card__image"
-                              src="<?php echo esc_url(
-                                  get_template_directory_uri() . $card["image"],
-                              ); ?>"
-                              alt=""
-                              aria-hidden="true"
-                            >
+                            <picture class="offer-card__picture">
+                                <?php if (!empty($card["mobile_image"])): ?>
+                                    <source
+                                      media="(max-width: 767px)"
+                                      srcset="<?php echo esc_url(
+                                          get_template_directory_uri() .
+                                              $card["mobile_image"],
+                                      ); ?>"
+                                    >
+                                <?php endif; ?>
+                                <img
+                                  class="offer-card__image"
+                                  src="<?php echo esc_url(
+                                      get_template_directory_uri() .
+                                          $card["image"],
+                                  ); ?>"
+                                  alt=""
+                                  aria-hidden="true"
+                                >
+                            </picture>
                         </div>
                         <a class="offer-card__button" href="#contacts" data-open-modal="contact"><?php echo esc_html(
                             $card["cta"],
