@@ -212,7 +212,7 @@ ul {
 }
 
 .single-service .hero {
-    padding: 32px 24px 100px;
+    padding: 32px 94px 100px;
 }
 
 .services-page-body .site-header__menu a,
@@ -518,11 +518,16 @@ main {
 .service-hero__breadcrumbs {
     position: relative;
     z-index: 1;
-    max-width: 1720px;
-    margin: 0 auto 34px;
+    max-width: auto;
+    width: fit-content;
+    backdrop-filter: blur(25px);
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 110px;
+    margin: 0 0 34px;
     display: flex;
     align-items: center;
     gap: 10px;
+    padding: 15px;
     font-weight: 500;
     font-size: 16px;
     line-height: 135%;
