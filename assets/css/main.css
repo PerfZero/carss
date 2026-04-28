@@ -4616,19 +4616,26 @@ main {
     .hero__benefits {
         margin-top: 18px;
         flex-direction: column;
-        gap: 10px;
+        gap: 30px;
+    }
+
+    .hero__benefit svg {
+        width: 18px;
     }
 
     .hero__benefit {
-        max-width: 120px;
-        min-width: 120px;
+        max-width: 130px;
+        min-width: 130px;
         margin: 35px auto 0;
         border-radius: 15px;
         width: 100%;
         height: auto;
+        align-items: flex-start;
         min-height: 56px;
+        text-align: left;
+        flex-direction: column;
         justify-content: flex-start;
-        padding: 14px 16px;
+        padding: 12px;
         font-size: 13px;
         line-height: 1.25;
     }
