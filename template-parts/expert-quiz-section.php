@@ -38,12 +38,9 @@ $expert_steps = [
     ],
 ];
 
-$expert_reviews = [
-    "Хочу поблагодарить Евгения за отличную работу по списанию утиля! Я обратился к нему после неудачной работы с другим таможенным брокером, который проморозил меня неделю. Тут все сделали быстро и без лишних вопросов.",
-    "Недавно воспользовался услугами по утилизационному сбору автомобиля и остался очень доволен. Процесс прошёл быстро и без лишних хлопот. Специалисты подробно объяснили и помогли с оформлением документов.",
-    "Рекомендую эту компанию всем, кто ищет надежное решение для утилизации авто. Все этапы прошли спокойно, менеджер был на связи и заранее предупреждал о следующих шагах.",
-    "Обратился по оформлению документов для постановки автомобиля на учет. Получил понятный план действий, сроки и стоимость до начала работы. Все сделали аккуратно и без задержек.",
-];
+$expert_reviews = cars_get_reviews();
+$review_placeholder = get_template_directory_uri() .
+    "/assets/images/icon_pes.svg";
 
 $quiz_steps = [
     [
@@ -180,15 +177,15 @@ $quiz_start_step = $quiz_status ? $quiz_total_steps : 1;
                             <div class="expert-review__top">
                                 <img
                                   src="<?php echo esc_url(
-                                      get_template_directory_uri() .
-                                          "/assets/images/eug.png",
+                                      !empty($review["image_url"])
+                                          ? $review["image_url"]
+                                          : $review_placeholder,
                                   ); ?>"
-                                  alt=""
-                                  aria-hidden="true"
+                                  alt="<?php echo esc_attr($review["name"]); ?>"
                                 >
                                 <span aria-hidden="true">★★★★★</span>
                             </div>
-                            <p><?php echo esc_html($review); ?></p>
+                            <p><?php echo esc_html($review["text"]); ?></p>
                         </article>
                     <?php endforeach; ?>
                 </div>

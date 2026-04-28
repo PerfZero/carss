@@ -7,6 +7,7 @@
 
 require_once get_template_directory() . "/inc/services.php";
 require_once get_template_directory() . "/inc/team.php";
+require_once get_template_directory() . "/inc/reviews.php";
 require_once get_template_directory() . "/inc/faq.php";
 require_once get_template_directory() . "/inc/forms.php";
 require_once get_template_directory() . "/inc/legal.php";
