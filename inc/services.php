@@ -1189,36 +1189,62 @@ function cars_seed_demo_service_variants()
     update_option("cars_seeded_service_variants_demo_v1", $service_id, false);
 }
 
-function cars_enable_all_cities_for_demo_service()
+function cars_enable_all_cities_for_primary_services()
 {
-    if (get_option("cars_enabled_all_cities_for_sbkts_v1")) {
+    if (get_option("cars_enabled_all_cities_for_primary_services_v1")) {
         return;
     }
 
-    $service = get_page_by_path("oformlenie-sbkts", OBJECT, "service");
+    $services = get_posts([
+        "post_type" => "service",
+        "post_status" => "publish",
+        "numberposts" => -1,
+        "orderby" => "menu_order title",
+        "order" => "ASC",
+    ]);
 
-    if (!$service) {
+    if (!$services) {
         return;
     }
 
-    update_post_meta($service->ID, "all_cities_enabled", 1);
-    update_option("cars_enabled_all_cities_for_sbkts_v1", 1, false);
+    foreach ($services as $service) {
+        if (!cars_service_is_primary($service)) {
+            continue;
+        }
+
+        update_post_meta($service->ID, "all_cities_enabled", 1);
+    }
+
+    update_option("cars_enabled_all_cities_for_primary_services_v1", 1, false);
 }
 
-function cars_enable_all_brands_for_demo_service()
+function cars_enable_all_brands_for_primary_services()
 {
-    if (get_option("cars_enabled_all_brands_for_sbkts_v1")) {
+    if (get_option("cars_enabled_all_brands_for_primary_services_v1")) {
         return;
     }
 
-    $service = get_page_by_path("oformlenie-sbkts", OBJECT, "service");
+    $services = get_posts([
+        "post_type" => "service",
+        "post_status" => "publish",
+        "numberposts" => -1,
+        "orderby" => "menu_order title",
+        "order" => "ASC",
+    ]);
 
-    if (!$service) {
+    if (!$services) {
         return;
     }
 
-    update_post_meta($service->ID, "all_brands_enabled", 1);
-    update_option("cars_enabled_all_brands_for_sbkts_v1", 1, false);
+    foreach ($services as $service) {
+        if (!cars_service_is_primary($service)) {
+            continue;
+        }
+
+        update_post_meta($service->ID, "all_brands_enabled", 1);
+    }
+
+    update_option("cars_enabled_all_brands_for_primary_services_v1", 1, false);
 }
 
 add_action("init", static function () {
@@ -1312,8 +1338,8 @@ add_action("init", static function () {
     );
 
     cars_seed_demo_service_variants();
-    cars_enable_all_cities_for_demo_service();
-    cars_enable_all_brands_for_demo_service();
+    cars_enable_all_cities_for_primary_services();
+    cars_enable_all_brands_for_primary_services();
 }, 20);
 
 add_action("acf/init", static function () {
