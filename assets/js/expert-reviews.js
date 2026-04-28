@@ -254,6 +254,16 @@
       });
     });
 
+    Array.prototype.forEach.call(document.querySelectorAll(".blog-preview"), function (root) {
+      initSlider(root, {
+        viewport: ".blog-preview__viewport",
+        track: ".blog-preview__grid",
+        slide: ".blog-card",
+        prev: '.blog-preview__nav button[aria-label="Предыдущая статья"]',
+        next: '.blog-preview__nav button[aria-label="Следующая статья"]',
+      });
+    });
+
     Array.prototype.forEach.call(document.querySelectorAll(".faq-card"), function (card) {
       var button = card.querySelector("button");
 

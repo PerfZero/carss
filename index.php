@@ -8,13 +8,20 @@
 get_header(); ?>
 <main>
     <section class="hero">
-        <img
-          class="hero_img"
-          src="<?php echo esc_url(
-              get_template_directory_uri() . "/assets/images/back_hero.webp",
-          ); ?>"
-          alt="Фон первого экрана"
-        >
+        <picture class="hero_img">
+            <source
+              media="(max-width: 767px)"
+              srcset="<?php echo esc_url(
+                  get_template_directory_uri() . "/assets/images/mob_back.png",
+              ); ?>"
+            >
+            <img
+              src="<?php echo esc_url(
+                  get_template_directory_uri() . "/assets/images/back_hero.webp",
+              ); ?>"
+              alt="Фон первого экрана"
+            >
+        </picture>
         <div class="hero__inner">
             <h1 class="hero__title">
                 Получите СБКТС и ЭПТС
@@ -506,6 +513,23 @@ get_header(); ?>
                         <?php endif; ?>
                     </article>
                 <?php endforeach; ?>
+
+                <article class="support-card support-card--compact support-card--mobile-only">
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0.366117 12.3661C-0.122039 12.8543 -0.122039 13.6457 0.366117 14.1339C0.854272 14.622 1.64573 14.622 2.13388 14.1339L1.25 13.25L0.366117 12.3661ZM14.5 1.25C14.5 0.559644 13.9404 9.528e-08 13.25 9.528e-08L2 -5.7907e-07C1.30964 -5.7907e-07 0.750001 0.559643 0.750001 1.25C0.75 1.94036 1.30964 2.5 2 2.5H12V12.5C12 13.1904 12.5596 13.75 13.25 13.75C13.9404 13.75 14.5 13.1904 14.5 12.5L14.5 1.25ZM1.25 13.25L2.13388 14.1339L14.1339 2.13388L13.25 1.25L12.3661 0.366116L0.366117 12.3661L1.25 13.25Z" fill="#B2B2B2" />
+                    </svg>
+                    <h3 class="support-card__title"><?php echo esc_html(
+                        $support_steps[3]["title"],
+                    ); ?></h3>
+                    <ul class="support-card__list">
+                        <?php foreach ($support_steps[3]["items"] as $item): ?>
+                            <li>
+                                <span class="support-card__bullet" aria-hidden="true"></span>
+                                <span><?php echo esc_html($item); ?></span>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </article>
             </div>
 
             <div class="support-track__lower">
