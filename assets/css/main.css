@@ -5350,8 +5350,8 @@ main {
     }
 
     .process-block__title {
-        font-size: 30px;
-        width: 80%;
+        font-size: 28px;
+        width: 83%;
         margin-bottom: 25px;
     }
 
@@ -5499,7 +5499,7 @@ main {
 
     .support-track__title,
     .trust-block__title {
-        font-size: 31px;
+        font-size: 25px;
     }
 
     .support-track__steps {
@@ -5534,7 +5534,7 @@ main {
     .support-card__title {
         width: auto;
         margin-bottom: 18px;
-        font-size: 20px;
+        font-size: 16px;
     }
 
     .support-card svg {
@@ -5549,7 +5549,7 @@ main {
 
     .support-card__list li {
         gap: 8px;
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .support-card__bullet {
@@ -5571,7 +5571,7 @@ main {
         min-height: 50px;
         padding: 0 18px;
         transform: none;
-        font-size: 15px;
+        font-size: 12px;
     }
 
     .support-card__link {
@@ -5841,7 +5841,7 @@ main {
     }
 
     .expert-section__title {
-        font-size: 28px;
+        font-size: 25px;
     }
 
     .expert-steps {
@@ -5873,7 +5873,7 @@ main {
     }
 
     .expert-step p {
-        font-size: 16px;
+        font-size: 12px;
     }
 
     .expert-section__consult {
@@ -6151,7 +6151,7 @@ main {
 
     .team-showcase__head h2,
     .blog-preview__head h2 {
-        font-size: 28px;
+        font-size: 25px;
     }
 
     .team-showcase__nav button {
@@ -6239,7 +6239,7 @@ main {
 
     .blog-card h3 {
         min-height: 40px;
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .faq-section {
@@ -6260,6 +6260,18 @@ main {
         gap: 12px;
     }
 
+    .blog-card p {
+        font-size: 11px;
+    }
+
+    .blog-preview__nav {
+        display: none;
+    }
+
+    .team-showcase__nav {
+        display: none;
+    }
+
     .faq-card {
         min-height: 74px;
         padding: 16px 14px 16px 18px;
@@ -6271,18 +6283,22 @@ main {
     }
 
     .faq-card h3 {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .faq-card button {
-        width: 42px;
-        height: 42px;
+        width: 32px;
+        height: 32px;
         font-size: 24px;
+    }
+
+    .faq-card button svg {
+        width: 13px;
     }
 
     .faq-card__answer {
         line-height: 1.45;
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .faq-card.is-open .faq-card__answer {
@@ -6481,12 +6497,20 @@ main {
     }
 
     .legal-page__breadcrumbs {
+        gap: 8px;
         padding: 22px 12px 0;
         font-size: 13px;
+        flex-wrap: wrap;
+        line-height: 1.3;
     }
 
     .legal-page__section {
-        padding: 56px 12px 70px;
+        padding: 32px 12px 70px;
+    }
+
+    .legal-page__layout {
+        grid-template-columns: 1fr;
+        gap: 14px;
     }
 
     .legal-page__article,
@@ -6495,34 +6519,59 @@ main {
     }
 
     .legal-page__article {
-        padding: 24px 18px 30px;
+        padding: 24px 18px 28px;
     }
 
     .legal-page__header {
-        margin-bottom: 26px;
+        margin-bottom: 22px;
+    }
+
+    .legal-page__eyebrow {
+        margin-bottom: 10px;
+        font-size: 12px;
     }
 
     .legal-page__title {
-        font-size: 32px;
+        font-size: 28px;
+        line-height: 1.08;
     }
 
     .legal-page__content {
         font-size: 15px;
+        line-height: 1.58;
+    }
+
+    .legal-page__content p,
+    .legal-page__content ul {
+        margin-bottom: 14px;
     }
 
     .legal-page__content h2,
     .legal-page__aside h2 {
         font-size: 20px;
+        line-height: 1.15;
+    }
+
+    .legal-page__content h2 {
+        margin: 28px 0 14px;
     }
 
     .legal-page__aside {
+        position: static;
+        top: auto;
         padding: 22px 18px;
+    }
+
+    .legal-page__aside h2 {
+        margin-bottom: 16px;
     }
 
     .legal-page__nav-link {
         min-height: 52px;
         padding: 0 16px;
         font-size: 14px;
+        justify-content: center;
+        text-align: center;
     }
 
     .blog-page__title {
