@@ -1,6 +1,6 @@
 (function () {
   var DESIGN_WIDTH = 1920;
-  var MOBILE_DESIGN_WIDTH = 390;
+  var MOBILE_DESIGN_WIDTH = 320;
   var MOBILE_BREAKPOINT = 768;
 
   function scalePage() {

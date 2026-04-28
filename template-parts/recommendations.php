@@ -58,7 +58,9 @@ $trust_items = [
                           aria-hidden="true"
                         >
                     </span>
-                    <p><?php echo esc_html($item["title"]); ?></p>
+                    <p><?php echo esc_html(
+                        cars_nbsp_short_words($item["title"]),
+                    ); ?></p>
                 </article>
             <?php endforeach; ?>
         </div>
@@ -76,7 +78,9 @@ $trust_items = [
                           aria-hidden="true"
                         >
                     </span>
-                    <p><?php echo esc_html($item["title"]); ?></p>
+                    <p><?php echo esc_html(
+                        cars_nbsp_short_words($item["title"]),
+                    ); ?></p>
                 </article>
             <?php endforeach; ?>
 

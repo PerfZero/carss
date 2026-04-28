@@ -9,8 +9,11 @@
     <div class="contact-process__inner">
         <div class="contact-process__form-col">
             <h2 class="contact-process__title">
-                После оформления СБКТС и ЭПТС
-                <strong>дарим сертификат на 100 тысяч рублей</strong> на детейлинг
+                <?php echo wp_kses_post(
+                    cars_nbsp_short_words(
+                        'После оформления СБКТС и ЭПТС <strong>дарим сертификат на 100 тысяч рублей</strong> на детейлинг',
+                    ),
+                ); ?>
             </h2>
 
             <form class="contact-form" action="<?php echo esc_url(

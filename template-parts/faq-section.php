@@ -16,7 +16,9 @@ if (empty($faq_section["columns"])) {
 <section class="faq-section">
     <div class="faq-section__inner">
         <h2 class="faq-section__title"><?php echo esc_html(
-            $faq_section["title"] ?? "Ответы на частые вопросы",
+            cars_nbsp_short_words(
+                $faq_section["title"] ?? "Ответы на частые вопросы",
+            ),
         ); ?></h2>
         <div class="faq-section__grid">
             <?php foreach ($faq_section["columns"] as $column): ?>
@@ -27,7 +29,7 @@ if (empty($faq_section["columns"])) {
                             : ""; ?>">
                             <div class="faq-card__head">
                                 <h3><?php echo esc_html(
-                                    $item["question"],
+                                    cars_nbsp_short_words($item["question"]),
                                 ); ?></h3>
                                 <button type="button" aria-label="Открыть ответ" aria-expanded="false">
                                     <svg width="16" height="9" viewBox="0 0 16 9" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

@@ -17,7 +17,8 @@ get_header(); ?>
             >
             <img
               src="<?php echo esc_url(
-                  get_template_directory_uri() . "/assets/images/back_hero.webp",
+                  get_template_directory_uri() .
+                      "/assets/images/back_hero.webp",
               ); ?>"
               alt="Фон первого экрана"
             >
@@ -28,8 +29,11 @@ get_header(); ?>
                 <span>за 1 день в Москве и по РФ</span>
             </h1>
             <p class="hero__description">
-                Поставьте автомобиль на учет без лишних действий и поездок, оформим всё “под ключ” в одном месте.
-              <strong>  Вы приезжаете в лабораторию нашей сети, а мы берём на себя весь процесс оформления от проверки до результата.</strong>
+                <?php echo wp_kses_post(
+                    cars_nbsp_short_words(
+                        "Поставьте автомобиль на учет без лишних действий и поездок, оформим всё “под ключ” в одном месте. <strong>Вы приезжаете в лабораторию нашей сети, а мы берём на себя весь процесс оформления от проверки до результата.</strong>",
+                    ),
+                ); ?>
             </p>
 
 
@@ -82,12 +86,14 @@ get_header(); ?>
             <?php foreach ($quick_links_items as $item): ?>
                 <article class="quick-links__card">
                     <p class="quick-links__text"><?php echo esc_html(
-                        $item["text"],
+                        cars_nbsp_short_words($item["text"]),
                     ); ?></p>
                     <a class="quick-links__link" href="<?php echo esc_url(
                         $item["link_href"],
                     ); ?>">
-                        <span><?php echo esc_html($item["link_text"]); ?></span>
+                        <span><?php echo esc_html(
+                            cars_nbsp_short_words($item["link_text"]),
+                        ); ?></span>
                         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M11.1798 0.74992C11.1798 0.335706 10.844 -8.05526e-05 10.4298 -8.04051e-05L3.67977 -8.08265e-05C3.26555 -8.08265e-05 2.92977 0.335705 2.92977 0.749919C2.92977 1.16413 3.26555 1.49992 3.67977 1.49992H9.67977V7.49992C9.67977 7.91413 10.0156 8.24992 10.4298 8.24992C10.844 8.24992 11.1798 7.91413 11.1798 7.49992L11.1798 0.74992ZM0.530273 10.6494L1.0606 11.1797L10.9601 1.28025L10.4298 0.749919L9.89944 0.219589L-5.66393e-05 10.1191L0.530273 10.6494Z" fill="#CFCFCF" />
                         </svg>                    </a>
@@ -188,14 +194,16 @@ get_header(); ?>
                 <?php foreach ($service_cards as $card): ?>
                     <article class="offer-card">
                         <h3 class="offer-card__title"><?php echo esc_html(
-                            $card["title"],
+                            cars_nbsp_short_words($card["title"]),
                         ); ?></h3>
                         <p class="offer-card__lead"><?php echo esc_html(
-                            $card["lead"],
+                            cars_nbsp_short_words($card["lead"]),
                         ); ?></p>
                         <ul class="offer-card__list">
                             <?php foreach ($card["items"] as $item): ?>
-                                <li><?php echo esc_html($item); ?></li>
+                                <li><?php echo esc_html(
+                                    cars_nbsp_short_words($item),
+                                ); ?></li>
                             <?php endforeach; ?>
                         </ul>
                         <div class="offer-card__image-wrap">
@@ -262,8 +270,11 @@ get_header(); ?>
         <div class="contact-process__inner">
             <div class="contact-process__form-col">
                 <h2 class="contact-process__title">
-                    После оформления СБКТС и ЭПТС
-                    <strong>дарим сертификат на 100 тысяч рублей</strong> на детейлинг
+                    <?php echo wp_kses_post(
+                        cars_nbsp_short_words(
+                            "После оформления СБКТС и ЭПТС <strong>дарим сертификат на 100 тысяч рублей</strong> на детейлинг",
+                        ),
+                    ); ?>
                 </h2>
 
                 <form class="contact-form" action="<?php echo esc_url(
@@ -513,24 +524,26 @@ get_header(); ?>
                           <path d="M0.366117 12.3661C-0.122039 12.8543 -0.122039 13.6457 0.366117 14.1339C0.854272 14.622 1.64573 14.622 2.13388 14.1339L1.25 13.25L0.366117 12.3661ZM14.5 1.25C14.5 0.559644 13.9404 9.528e-08 13.25 9.528e-08L2 -5.7907e-07C1.30964 -5.7907e-07 0.750001 0.559643 0.750001 1.25C0.75 1.94036 1.30964 2.5 2 2.5H12V12.5C12 13.1904 12.5596 13.75 13.25 13.75C13.9404 13.75 14.5 13.1904 14.5 12.5L14.5 1.25ZM1.25 13.25L2.13388 14.1339L14.1339 2.13388L13.25 1.25L12.3661 0.366116L0.366117 12.3661L1.25 13.25Z" fill="#B2B2B2" />
                         </svg>
                         <h3 class="support-card__title"><?php echo esc_html(
-                            $step["title"],
+                            cars_nbsp_short_words($step["title"]),
                         ); ?></h3>
                         <ul class="support-card__list">
                             <?php foreach ($step["items"] as $item): ?>
                                 <li>
                                     <span class="support-card__bullet" aria-hidden="true"></span>
-                                    <span><?php echo esc_html($item); ?></span>
+                                    <span><?php echo esc_html(
+                                        cars_nbsp_short_words($item),
+                                    ); ?></span>
                                 </li>
                             <?php endforeach; ?>
                         </ul>
                         <?php if (!empty($step["button"])): ?>
                             <a class="support-card__button" href="#contacts" data-open-modal="contact"><?php echo esc_html(
-                                $step["button"],
+                                cars_nbsp_short_words($step["button"]),
                             ); ?></a>
                         <?php endif; ?>
                         <?php if (!empty($step["link"])): ?>
                             <a class="support-card__link" href="#contacts" data-open-modal="contact"><?php echo esc_html(
-                                $step["link"],
+                                cars_nbsp_short_words($step["link"]),
                             ); ?></a>
                         <?php endif; ?>
                     </article>
@@ -541,13 +554,15 @@ get_header(); ?>
                       <path d="M0.366117 12.3661C-0.122039 12.8543 -0.122039 13.6457 0.366117 14.1339C0.854272 14.622 1.64573 14.622 2.13388 14.1339L1.25 13.25L0.366117 12.3661ZM14.5 1.25C14.5 0.559644 13.9404 9.528e-08 13.25 9.528e-08L2 -5.7907e-07C1.30964 -5.7907e-07 0.750001 0.559643 0.750001 1.25C0.75 1.94036 1.30964 2.5 2 2.5H12V12.5C12 13.1904 12.5596 13.75 13.25 13.75C13.9404 13.75 14.5 13.1904 14.5 12.5L14.5 1.25ZM1.25 13.25L2.13388 14.1339L14.1339 2.13388L13.25 1.25L12.3661 0.366116L0.366117 12.3661L1.25 13.25Z" fill="#B2B2B2" />
                     </svg>
                     <h3 class="support-card__title"><?php echo esc_html(
-                        $support_steps[3]["title"],
+                        cars_nbsp_short_words($support_steps[3]["title"]),
                     ); ?></h3>
                     <ul class="support-card__list">
                         <?php foreach ($support_steps[3]["items"] as $item): ?>
                             <li>
                                 <span class="support-card__bullet" aria-hidden="true"></span>
-                                <span><?php echo esc_html($item); ?></span>
+                                <span><?php echo esc_html(
+                                    cars_nbsp_short_words($item),
+                                ); ?></span>
                             </li>
                         <?php endforeach; ?>
                     </ul>
@@ -560,13 +575,15 @@ get_header(); ?>
                       <path d="M0.366117 12.3661C-0.122039 12.8543 -0.122039 13.6457 0.366117 14.1339C0.854272 14.622 1.64573 14.622 2.13388 14.1339L1.25 13.25L0.366117 12.3661ZM14.5 1.25C14.5 0.559644 13.9404 9.528e-08 13.25 9.528e-08L2 -5.7907e-07C1.30964 -5.7907e-07 0.750001 0.559643 0.750001 1.25C0.75 1.94036 1.30964 2.5 2 2.5H12V12.5C12 13.1904 12.5596 13.75 13.25 13.75C13.9404 13.75 14.5 13.1904 14.5 12.5L14.5 1.25ZM1.25 13.25L2.13388 14.1339L14.1339 2.13388L13.25 1.25L12.3661 0.366116L0.366117 12.3661L1.25 13.25Z" fill="#B2B2B2" />
                     </svg>
                     <h3 class="support-card__title"><?php echo esc_html(
-                        $support_steps[3]["title"],
+                        cars_nbsp_short_words($support_steps[3]["title"]),
                     ); ?></h3>
                     <ul class="support-card__list">
                         <?php foreach ($support_steps[3]["items"] as $item): ?>
                             <li>
                                 <span class="support-card__bullet" aria-hidden="true"></span>
-                                <span><?php echo esc_html($item); ?></span>
+                                <span><?php echo esc_html(
+                                    cars_nbsp_short_words($item),
+                                ); ?></span>
                             </li>
                         <?php endforeach; ?>
                     </ul>
@@ -587,7 +604,9 @@ get_header(); ?>
                               alt=""
                               aria-hidden="true"
                             >
-                            <p><?php echo esc_html($note); ?></p>
+                            <p><?php echo esc_html(
+                                cars_nbsp_short_words($note),
+                            ); ?></p>
                         </article>
                     <?php endforeach; ?>
                 </div>
@@ -621,7 +640,9 @@ get_header(); ?>
                                         <?php echo esc_html($item["badge"]); ?>
                                     <?php endif; ?>
                                 </span>
-                                <p><?php echo esc_html($item["title"]); ?></p>
+                                <p><?php echo esc_html(
+                                    cars_nbsp_short_words($item["title"]),
+                                ); ?></p>
                             </article>
                         <?php endforeach; ?>
                     </div>
@@ -647,7 +668,9 @@ get_header(); ?>
                                         <?php echo esc_html($item["badge"]); ?>
                                     <?php endif; ?>
                                 </span>
-                                <p><?php echo esc_html($item["title"]); ?></p>
+                                <p><?php echo esc_html(
+                                    cars_nbsp_short_words($item["title"]),
+                                ); ?></p>
                             </article>
                         <?php endforeach; ?>
 

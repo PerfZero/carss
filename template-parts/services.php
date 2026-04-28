@@ -127,8 +127,11 @@ $first_card_group = $first_card_group_key !== null
                 Получите <strong>полный пакет документов</strong> для постановки автомобиля на учет
             </h2>
             <p class="docs-white__intro">
-                Мы помогаем оформить СБКТС на автомобиль и получить ЭПТС через наших партнеров, аккредитованные
-                испытательные лаборатории. <strong>После оформления вы сможете официально зарегистрировать автомобиль.</strong>
+                <?php echo wp_kses_post(
+                    cars_nbsp_short_words(
+                        "Мы помогаем оформить СБКТС на автомобиль и получить ЭПТС через наших партнеров, аккредитованные испытательные лаборатории. <strong>После оформления вы сможете официально зарегистрировать автомобиль.</strong>",
+                    ),
+                ); ?>
             </p>
         </div>
 
@@ -142,7 +145,7 @@ $first_card_group = $first_card_group_key !== null
                   <path d="M0.292893 12.2929C-0.0976311 12.6834 -0.0976311 13.3166 0.292893 13.7071C0.683418 14.0976 1.31658 14.0976 1.70711 13.7071L1 13L0.292893 12.2929ZM14 0.999999C14 0.447714 13.5523 -8.61581e-07 13 -1.11446e-06L4 -3.13672e-07C3.44772 -6.50847e-07 3 0.447715 3 0.999999C3 1.55228 3.44772 2 4 2L12 2L12 10C12 10.5523 12.4477 11 13 11C13.5523 11 14 10.5523 14 10L14 0.999999ZM1 13L1.70711 13.7071L13.7071 1.70711L13 0.999999L12.2929 0.292893L0.292893 12.2929L1 13Z" fill="#EF1413" />
                 </svg></a>
                 <p class="docs-white__head-note"><?php echo esc_html(
-                    $first_card_group["note"],
+                    cars_nbsp_short_words($first_card_group["note"]),
                 ); ?></p>
             </div>
         <?php endif; ?>
@@ -157,7 +160,7 @@ $first_card_group = $first_card_group_key !== null
     ? 'id="services-groups"'
     : ""; ?>>
                 <h3 class="docs-white__head-title"><?php echo esc_html(
-                    $group["title"],
+                    cars_nbsp_short_words($group["title"]),
                 ); ?></h3>
                 <?php if ($is_first_group && !$is_page_variant): ?>
                     <a class="docs-white__head-link" href="<?php echo esc_url($services_url); ?>">Перейти в раздел услуг<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -170,7 +173,7 @@ $first_card_group = $first_card_group_key !== null
                     !empty($group["note"])
                 ): ?>
                     <p class="docs-white__head-note"><?php echo esc_html(
-                        $group["note"],
+                        cars_nbsp_short_words($group["note"]),
                     ); ?></p>
                 <?php endif; ?>
             </div>
@@ -197,25 +200,27 @@ $first_card_group = $first_card_group_key !== null
                           <path d="M0.292893 12.2929C-0.0976311 12.6834 -0.0976311 13.3166 0.292893 13.7071C0.683418 14.0976 1.31658 14.0976 1.70711 13.7071L1 13L0.292893 12.2929ZM14 0.999999C14 0.447714 13.5523 -8.61581e-07 13 -1.11446e-06L4 -3.13672e-07C3.44772 -6.50847e-07 3 0.447715 3 0.999999C3 1.55228 3.44772 2 4 2L12 2L12 10C12 10.5523 12.4477 11 13 11C13.5523 11 14 10.5523 14 10L14 0.999999ZM1 13L1.70711 13.7071L13.7071 1.70711L13 0.999999L12.2929 0.292893L0.292893 12.2929L1 13Z" fill="currentColor" />
                         </svg>
                         <h4 class="docs-card__title"><?php echo esc_html(
-                            $card["title"],
+                            cars_nbsp_short_words($card["title"]),
                         ); ?></h4>
                         <p class="docs-card__lead"><?php echo esc_html(
-                            $card["lead"],
+                            cars_nbsp_short_words($card["lead"]),
                         ); ?></p>
                         <?php if (!empty($card["items"])): ?>
                             <ul class="docs-card__list">
                                 <?php foreach ($card["items"] as $item): ?>
-                                    <li><?php echo esc_html($item); ?></li>
+                                    <li><?php echo esc_html(
+                                        cars_nbsp_short_words($item),
+                                    ); ?></li>
                                 <?php endforeach; ?>
                             </ul>
                         <?php endif; ?>
                         <?php if (!empty($card["note"])): ?>
                             <p class="docs-card__note"><?php echo esc_html(
-                                $card["note"],
+                                cars_nbsp_short_words($card["note"]),
                             ); ?></p>
                         <?php endif; ?>
                         <span class="docs-card__button"><?php echo esc_html(
-                            $card["button"],
+                            cars_nbsp_short_words($card["button"]),
                         ); ?></span>
                     </a>
                 <?php endforeach; ?>
@@ -234,7 +239,7 @@ $first_card_group = $first_card_group_key !== null
 
         <?php if ($show_additional): ?>
             <h3 class="docs-white__extra-title"><?php echo esc_html(
-                $additional_group["title"],
+                cars_nbsp_short_words($additional_group["title"]),
             ); ?></h3>
 
             <div class="docs-white__chips">
@@ -245,7 +250,9 @@ $first_card_group = $first_card_group_key !== null
                           : ""; ?>"
                       href="<?php echo esc_url($service["url"]); ?>"
                     >
-                        <span><?php echo esc_html($service["title"]); ?></span>
+                        <span><?php echo esc_html(
+                            cars_nbsp_short_words($service["title"]),
+                        ); ?></span>
                         <svg
                           class="docs-white__chip-arrow"
                           width="12"
