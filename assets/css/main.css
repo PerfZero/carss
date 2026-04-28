@@ -5844,8 +5844,29 @@ main {
 
     .expert-section__messengers {
         margin-top: 24px;
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: space-between;
         gap: 18px;
+    }
+
+    .expert-reviews__nav {
+        display: none;
+    }
+
+    .expert-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        height: 880px;
+        z-index: 1;
+        width: 700px;
+        left: -290px;
+        top: 560px;
+        background: url(../images/bascs.png);
+        background-position: center;
+        pointer-events: none;
+        background-size: 100%;
+        background-repeat: no-repeat;
     }
 
     .expert-section__messengers a {
@@ -5858,6 +5879,7 @@ main {
 
     .expert-reviews__head {
         align-items: flex-start;
+        text-align: center;
         flex-direction: column;
     }
 
@@ -5888,19 +5910,34 @@ main {
     .expert-quiz {
         margin-top: 64px;
         min-height: auto;
-        padding-bottom: 120px;
+        padding-bottom: 180px;
+    }
+
+    .team-blog-section::before {
+        background: none;
     }
 
     .expert-quiz__card {
         width: 100%;
         min-height: auto;
         padding: 44px 16px 28px;
-        border-radius: 22px 22px 0 0;
+        border-radius: 22px;
     }
-
     .expert-quiz__card h2 {
         margin-bottom: 30px;
         font-size: 25px;
+    }
+
+    .expert-quiz::before {
+        content: "";
+        background: url(../images/mob_quiz.png);
+        width: 100%;
+        background-repeat: no-repeat;
+        height: 300px;
+        background-size: 100%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
     }
 
     .expert-quiz__meta {
