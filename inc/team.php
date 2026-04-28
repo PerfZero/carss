@@ -68,6 +68,70 @@ add_action("acf/init", static function () {
     ]);
 });
 
+function cars_get_team_seed_data()
+{
+    return [
+        [
+            "name" => "Евгений",
+            "role" => "Координатор растаможка Беларусь и Киргизия",
+        ],
+        [
+            "name" => "Алексей",
+            "role" => "Координатор по списанию утиля",
+        ],
+        [
+            "name" => "Вадим",
+            "role" => "Координатор выпуск СБКТС ЭПТС",
+        ],
+        [
+            "name" => "Мария",
+            "role" => "Специалист по сопровождению клиентов",
+        ],
+    ];
+}
+
+add_action("init", static function () {
+    $seed_option = "cars_team_seeded_v2";
+
+    if (get_option($seed_option)) {
+        return;
+    }
+
+    foreach (cars_get_team_seed_data() as $index => $member_data) {
+        $existing_member = get_page_by_title(
+            $member_data["name"],
+            OBJECT,
+            "team_member",
+        );
+
+        if ($existing_member instanceof WP_Post) {
+            $member_id = (int) $existing_member->ID;
+
+            wp_update_post([
+                "ID" => $member_id,
+                "menu_order" => $index,
+            ]);
+        } else {
+            $member_id = wp_insert_post([
+                "post_type" => "team_member",
+                "post_status" => "publish",
+                "post_title" => $member_data["name"],
+                "menu_order" => $index,
+            ]);
+        }
+
+        if (
+            !is_wp_error($member_id) &&
+            $member_id &&
+            function_exists("update_field")
+        ) {
+            update_field("field_cars_team_member_role", $member_data["role"], $member_id);
+        }
+    }
+
+    update_option($seed_option, 1, false);
+});
+
 function cars_get_team_members()
 {
     $team_posts = get_posts([
@@ -81,28 +145,13 @@ function cars_get_team_members()
     ]);
 
     if (!$team_posts) {
-        return [
-            [
-                "name" => "Евгений",
-                "role" => "Координатор растаможка Беларусь и Киргизия",
+        return array_map(static function ($member_data) {
+            return [
+                "name" => $member_data["name"],
+                "role" => $member_data["role"],
                 "image_id" => 0,
-            ],
-            [
-                "name" => "Алексей",
-                "role" => "Координатор по списанию утиля",
-                "image_id" => 0,
-            ],
-            [
-                "name" => "Вадим",
-                "role" => "Координатор выпуск СБКТС ЭПТС",
-                "image_id" => 0,
-            ],
-            [
-                "name" => "Мария",
-                "role" => "Специалист по сопровождению клиентов",
-                "image_id" => 0,
-            ],
-        ];
+            ];
+        }, cars_get_team_seed_data());
     }
 
     return array_map(static function ($team_post) {
