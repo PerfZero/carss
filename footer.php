@@ -8,6 +8,65 @@ $services_url = esc_url(cars_services_page_url());
 $offer_url = esc_url(cars_get_legal_page_url("offer"));
 $privacy_url = esc_url(cars_get_legal_page_url("privacy"));
 $modal_status = cars_get_request_form_status("modal_contact");
+$footer_service_url = static function (array $titles) use ($services_url) {
+    static $services = null;
+
+    $normalize = static function ($value) {
+        $value = wp_strip_all_tags((string) $value);
+        $value = str_replace("\xc2\xa0", " ", $value);
+        $value = preg_replace("/\s+/u", " ", $value);
+
+        $value = trim((string) $value);
+
+        return function_exists("mb_strtolower")
+            ? mb_strtolower($value)
+            : strtolower($value);
+    };
+
+    $wanted = array_map($normalize, $titles);
+    if ($services === null) {
+        $services = get_posts([
+            "post_type" => "service",
+            "post_status" => "publish",
+            "numberposts" => -1,
+        ]);
+    }
+
+    foreach ($services as $service) {
+        if (in_array($normalize($service->post_title), $wanted, true)) {
+            return esc_url(get_permalink($service));
+        }
+    }
+
+    return $services_url;
+};
+
+$footer_services = [
+    "pts" => [
+        "label" => "Оформление СБКТС",
+        "url" => $footer_service_url(["Оформление СБКТС", "СБКТС"]),
+    ],
+    "epts" => [
+        "label" => "ЭПТС",
+        "url" => $footer_service_url(["ЭПТС", "Оформление ЭПТС"]),
+    ],
+    "conversion" => [
+        "label" => "Переоборудование ТС",
+        "url" => $footer_service_url(["Переоборудование ТС"]),
+    ],
+    "epsm" => [
+        "label" => "Оформление ЭПСМ",
+        "url" => $footer_service_url(["Оформление ЭПСМ", "ЭПСМ"]),
+    ],
+    "customs" => [
+        "label" => "Растаможка",
+        "url" => $footer_service_url(["Растаможка", "Таможенное оформление"]),
+    ],
+    "recycling" => [
+        "label" => "Утилизационный сбор",
+        "url" => $footer_service_url(["Утилизационный сбор"]),
+    ],
+];
 ?>
 <footer class="site-footer" id="footer-contacts">
     <div class="site-footer__inner">
@@ -26,16 +85,16 @@ $modal_status = cars_get_request_form_status("modal_contact");
 
             <nav class="site-footer__nav" aria-label="Услуги ПТС-оператор">
                 <h2>Услуги ПТС-оператор</h2>
-                <a href="<?php echo $services_url; ?>">Оформление СБКТС</a>
-                <a href="<?php echo $services_url; ?>">ЭПТС</a>
-                <a href="<?php echo $services_url; ?>">Переоборудование ТС</a>
-                <a href="<?php echo $services_url; ?>">Оформление ЭПСМ</a>
+                <a href="<?php echo $footer_services["pts"]["url"]; ?>"><?php echo esc_html($footer_services["pts"]["label"]); ?></a>
+                <a href="<?php echo $footer_services["epts"]["url"]; ?>"><?php echo esc_html($footer_services["epts"]["label"]); ?></a>
+                <a href="<?php echo $footer_services["conversion"]["url"]; ?>"><?php echo esc_html($footer_services["conversion"]["label"]); ?></a>
+                <a href="<?php echo $footer_services["epsm"]["url"]; ?>"><?php echo esc_html($footer_services["epsm"]["label"]); ?></a>
             </nav>
 
             <nav class="site-footer__nav" aria-label="Таможенные услуги">
                 <h2>Таможенные услуги:</h2>
-                <a href="<?php echo $services_url; ?>">Растаможка</a>
-                <a href="<?php echo $services_url; ?>">Утилизационный сбор</a>
+                <a href="<?php echo $footer_services["customs"]["url"]; ?>"><?php echo esc_html($footer_services["customs"]["label"]); ?></a>
+                <a href="<?php echo $footer_services["recycling"]["url"]; ?>"><?php echo esc_html($footer_services["recycling"]["label"]); ?></a>
             </nav>
 
             <section class="site-footer__question" aria-labelledby="footer-question-title">
@@ -78,7 +137,7 @@ $modal_status = cars_get_request_form_status("modal_contact");
             <a class="site-footer__legal" href="<?php echo $privacy_url; ?>">Политика конфиденциальности</a>
             <a class="site-footer__legal" href="<?php echo $offer_url; ?>">Договор оферты</a>
             <div class="site-footer__socials">
-                <a class="site-footer__social site-footer__social--telegram" href="https://t.me/" target="_blank" rel="noreferrer" aria-label="Telegram">
+                <a class="site-footer__social site-footer__social--telegram" href="#contacts" data-open-modal="contact" aria-label="Telegram">
                     <img
                       class="hero_img1"
                       src="<?php echo esc_url(
@@ -88,7 +147,7 @@ $modal_status = cars_get_request_form_status("modal_contact");
                       alt="Фон первого экрана"
                     >
                 </a>
-                <a class="site-footer__social site-footer__social--max" href="#" aria-label="MAX">
+                <a class="site-footer__social site-footer__social--max" href="#contacts" data-open-modal="contact" aria-label="MAX">
                     <img
                       class="hero_img1"
                       src="<?php echo esc_url(

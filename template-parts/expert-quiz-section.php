@@ -77,7 +77,6 @@ $quiz_start_step = $quiz_status ? $quiz_total_steps : 1;
 ?>
 <section class="expert-section" id="expert">
     <div class="expert-section__inner">
-        <div class="expert-section__anchor" id="contacts" aria-hidden="true"></div>
         <h2 class="expert-section__title">
             Получите <strong>подробный разбор</strong> вашей<br>
             ситуации с экспертом <strong>бесплатно</strong>
@@ -177,7 +176,7 @@ $quiz_start_step = $quiz_status ? $quiz_total_steps : 1;
             </div>
         </div>
 
-        <div class="expert-reviews" id="reviews">
+        <div class="expert-reviews" id="expert-reviews">
             <div class="expert-reviews__head">
                 <h2>Что говорят <span><br>о ЭПТС-оператор</span></h2>
                 <div class="expert-reviews__nav">
