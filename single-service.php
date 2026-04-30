@@ -80,11 +80,22 @@ $contact_url = home_url("/#contacts");
                 <img
                   src="<?php echo esc_url(
                       get_template_directory_uri() .
-                          "/assets/images/back_us.png",
+                          "/assets/images/services_back.png",
                   ); ?>"
                   alt="Фон первого экрана"
                 >
             </picture>
+            <picture class="hero_img_2">
+
+                <img
+                  src="<?php echo esc_url(
+                      get_template_directory_uri() .
+                          "/assets/images/cars_bottom_1.png",
+                  ); ?>"
+                  alt="Фон первого экрана"
+                >
+            </picture>
+
             <div class="service-hero__breadcrumbs" aria-label="Хлебные крошки">
                 <a href="<?php echo esc_url(home_url("/")); ?>">Главная</a>
                 <span>/</span>

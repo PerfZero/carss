@@ -260,6 +260,15 @@ main {
     padding: 60px 24px 100px;
 }
 
+.single .hero {
+    position: relative;
+    overflow: visible;
+}
+
+body {
+    overflow-x: hidden;
+}
+
 .hero__inner {
     z-index: 1;
     max-width: 980px;
@@ -469,9 +478,16 @@ main {
 .hero_img {
     position: absolute;
     width: 100%;
-    top: 0;
+    top: -90px;
     left: 0;
     z-index: -1;
+}
+
+.hero_img_2 {
+    position: absolute;
+    bottom: -350px;
+    left: 50%;
+    transform: translate(-50%);
 }
 
 .hero_img img {
@@ -632,7 +648,7 @@ main {
 }
 
 .service-hero__bottom-card {
-    margin: 278px auto 0;
+    margin: 50px auto 0;
     max-width: 560px;
     min-height: 92px;
     padding: 22px 28px;
@@ -4549,7 +4565,7 @@ main {
     .site-header__inner {
         position: relative;
         gap: 12px;
-        min-height: 74px;
+        min-height: 0;
         padding: 0;
         border-radius: 26px;
         box-shadow: none;
@@ -4841,17 +4857,16 @@ main {
     .service-hero__points {
         margin-top: 22px;
         gap: 10px;
-        flex-direction: column;
+        flex-wrap: nowrap;
+        flex-direction: row;
         align-items: stretch;
     }
 
     .service-hero__point {
         max-width: 100%;
         gap: 12px;
-        padding: 14px 16px;
         border-radius: 18px;
-        background: rgba(255, 255, 255, 0.06);
-        font-size: 14px;
+        font-size: 11px;
         line-height: 1.35;
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
     }
@@ -5291,6 +5306,7 @@ main {
         height: 4px;
         left: 4px;
         top: 9px;
+        border-radius: 1px;
     }
 
     .docs-card__note {
@@ -5331,7 +5347,7 @@ main {
     .docs-white__chips {
         margin-top: 18px;
         justify-content: center;
-        gap: 10px;
+        gap: 10px 5px;
     }
 
     .docs-white__chip {
@@ -6245,7 +6261,7 @@ main {
     }
 
     .single-service .hero {
-        padding: 25px;
+        padding: 0 25px 80px;
         height: auto;
     }
 
@@ -7071,6 +7087,10 @@ main {
     }
 
     .blog-single__related-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .hero_img_2 {
         display: none;
     }
 
