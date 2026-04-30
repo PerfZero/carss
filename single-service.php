@@ -80,7 +80,7 @@ $contact_url = home_url("/#contacts");
                 <img
                   src="<?php echo esc_url(
                       get_template_directory_uri() .
-                          "/assets/images/back_hero.webp",
+                          "/assets/images/back_us.png",
                   ); ?>"
                   alt="Фон первого экрана"
                 >

@@ -56,6 +56,63 @@ $service_to_card = static function ($service_post) {
     ];
 };
 
+$normalize_chip_title = static function ($title) {
+    $title = (string) $title;
+
+    return trim(preg_replace("/\s+/u", " ", $title));
+};
+
+$format_chip_title = static function ($title) use ($normalize_chip_title) {
+    $title = (string) $title;
+    $normalized_title = $normalize_chip_title($title);
+    $mobile_breaks = [
+        "Консультация по постановке автомобиля на учет" => [
+            "Консультация по постановке",
+            "автомобиля на учет",
+        ],
+        "Консультацию по постановке автомобиля на учет" => [
+            "Консультацию по постановке",
+            "автомобиля на учет",
+        ],
+        "Оценка рыночной стоимости ТС" => [
+            "Оценка рыночной",
+            "стоимости ТС",
+        ],
+        "Заключение тех. экспертизы" => ["Заключение", "тех. экспертизы"],
+        "Кнопка SOS (с 01.04.2026 обязательна для всех ТС)" => [
+            "Кнопка SOS (с 01.04.2026 обязательна",
+            "для всех ТС)",
+        ],
+        "Учет в ГИБДД" => ["Учет", "в ГИБДД"],
+        "Замена бумажного ПТС на электронный" => [
+            "Замена бумажного ПТС",
+            "на электронный",
+        ],
+        "Заключение об идентификации ТС" => [
+            "Заключение",
+            "об идентификации ТС",
+        ],
+        "Декларация соответствия" => ["Декларация", "соответствия"],
+        "Признаем ТС паритетным" => ["Признаем ТС", "паритетным"],
+    ];
+
+    $parts = $mobile_breaks[$normalized_title] ?? null;
+
+    if (!$parts) {
+        return esc_html(cars_nbsp_short_words($title));
+    }
+
+    $separator =
+        '<span class="docs-white__chip-desktop-space"> </span><br class="docs-white__chip-break">';
+
+    return implode(
+        $separator,
+        array_map(static function ($part) {
+            return esc_html(cars_nbsp_short_words($part));
+        }, $parts),
+    );
+};
+
 $service_groups = [];
 
 foreach ($category_slugs as $category_slug) {
@@ -116,11 +173,12 @@ if (!$is_page_variant && !$active_group_slug) {
 $additional_group = $service_groups[$additional_group_slug] ?? null;
 $show_additional = (bool) $additional_group;
 $first_card_group_key = array_key_first($card_groups);
-$first_card_group = $first_card_group_key !== null
-    ? $card_groups[$first_card_group_key]
-    : null;
+$first_card_group =
+    $first_card_group_key !== null ? $card_groups[$first_card_group_key] : null;
 ?>
-<section class="docs-white <?php echo $is_page_variant ? "docs-white--page" : ""; ?>" id="docs-pack">
+<section class="docs-white <?php echo $is_page_variant
+    ? "docs-white--page"
+    : ""; ?>" id="docs-pack">
     <div class="docs-white__inner">
         <div class="docs-white__top">
             <h2 class="docs-white__title">
@@ -151,19 +209,20 @@ $first_card_group = $first_card_group_key !== null
         <?php endif; ?>
 
         <?php foreach ($card_groups as $group_index => $group): ?>
-            <?php $is_first_group = array_key_first($card_groups) === $group_index; ?>
+            <?php $is_first_group =
+                array_key_first($card_groups) === $group_index; ?>
             <div class="docs-white__head-row <?php echo $is_page_variant
                 ? "docs-white__head-row--page"
                 : ""; ?> <?php echo !$is_first_group
-                ? "docs-white__head-row--sub"
-                : ""; ?>" <?php echo $is_first_group
-    ? 'id="services-groups"'
-    : ""; ?>>
+     ? "docs-white__head-row--sub"
+     : ""; ?>" <?php echo $is_first_group ? 'id="services-groups"' : ""; ?>>
                 <h3 class="docs-white__head-title"><?php echo esc_html(
                     cars_nbsp_short_words($group["title"]),
                 ); ?></h3>
                 <?php if ($is_first_group && !$is_page_variant): ?>
-                    <a class="docs-white__head-link" href="<?php echo esc_url($services_url); ?>">Перейти в раздел услуг<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <a class="docs-white__head-link" href="<?php echo esc_url(
+                        $services_url,
+                    ); ?>">Перейти<br> в раздел услуг<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M0.292893 12.2929C-0.0976311 12.6834 -0.0976311 13.3166 0.292893 13.7071C0.683418 14.0976 1.31658 14.0976 1.70711 13.7071L1 13L0.292893 12.2929ZM14 0.999999C14 0.447714 13.5523 -8.61581e-07 13 -1.11446e-06L4 -3.13672e-07C3.44772 -6.50847e-07 3 0.447715 3 0.999999C3 1.55228 3.44772 2 4 2L12 2L12 10C12 10.5523 12.4477 11 13 11C13.5523 11 14 10.5523 14 10L14 0.999999ZM1 13L1.70711 13.7071L13.7071 1.70711L13 0.999999L12.2929 0.292893L0.292893 12.2929L1 13Z" fill="#EF1413" />
                     </svg></a>
                 <?php endif; ?>
@@ -172,9 +231,7 @@ $first_card_group = $first_card_group_key !== null
                     !$is_page_variant &&
                     !empty($group["note"])
                 ): ?>
-                    <p class="docs-white__head-note"><?php echo esc_html(
-                        cars_nbsp_short_words($group["note"]),
-                    ); ?></p>
+                    <p class="docs-white__head-note">›<strong>Более 50</strong> лабораторий по РФ</p>
                 <?php endif; ?>
             </div>
 
@@ -187,7 +244,9 @@ $first_card_group = $first_card_group_key !== null
                         $button_link = $contact_url;
                     }
                     ?>
-                    <a class="docs-card" href="<?php echo esc_url($card["url"]); ?>">
+                    <a class="docs-card" href="<?php echo esc_url(
+                        $card["url"],
+                    ); ?>">
                         <svg
                           class="docs-card__arrow"
                           width="14"
@@ -243,15 +302,26 @@ $first_card_group = $first_card_group_key !== null
             ); ?></h3>
 
             <div class="docs-white__chips">
-                <?php foreach ($additional_group["items"] as $index => $service): ?>
+                <?php foreach (
+                    $additional_group["items"]
+                    as $index => $service
+                ): ?>
                     <a
                       class="docs-white__chip <?php echo $index === 0
                           ? "docs-white__chip--active"
                           : ""; ?>"
                       href="<?php echo esc_url($service["url"]); ?>"
                     >
-                        <span><?php echo esc_html(
-                            cars_nbsp_short_words($service["title"]),
+                        <span><?php echo wp_kses(
+                            $format_chip_title($service["title"]),
+                            [
+                                "br" => [
+                                    "class" => true,
+                                ],
+                                "span" => [
+                                    "class" => true,
+                                ],
+                            ],
                         ); ?></span>
                         <svg
                           class="docs-white__chip-arrow"
@@ -272,7 +342,9 @@ $first_card_group = $first_card_group_key !== null
             </div>
 
             <div class="docs-white__bottom-action">
-                <a class="docs-white__main-btn" href="<?php echo esc_url($contact_url); ?>" data-open-modal="contact">Оставить заявку</a>
+                <a class="docs-white__main-btn" href="<?php echo esc_url(
+                    $contact_url,
+                ); ?>" data-open-modal="contact">Оставить заявку</a>
             </div>
         <?php endif; ?>
     </div>

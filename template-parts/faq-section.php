@@ -15,11 +15,7 @@ if (empty($faq_section["columns"])) {
 ?>
 <section class="faq-section">
     <div class="faq-section__inner">
-        <h2 class="faq-section__title"><?php echo esc_html(
-            cars_nbsp_short_words(
-                $faq_section["title"] ?? "Ответы на частые вопросы",
-            ),
-        ); ?></h2>
+        <h2 class="faq-section__title">Ответы на <strong>частые вопросы</strong></h2>
         <div class="faq-section__grid">
             <?php foreach ($faq_section["columns"] as $column): ?>
                 <div class="faq-section__col">
