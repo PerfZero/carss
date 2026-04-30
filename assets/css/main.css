@@ -4912,6 +4912,12 @@ body {
         width: 100%;
     }
 
+    .reliable-card svg {
+        position: relative;
+        top: 1px;
+        width: 10px;
+    }
+
     .hero_img {
         height: 100%;
         top: -30px;
@@ -6897,7 +6903,7 @@ body {
     .site-footer__socials {
         grid-area: socials;
         justify-self: end;
-        gap: 16px;
+        gap: 0;
     }
 
     .site-footer__legal {
@@ -6924,9 +6930,9 @@ body {
         font-size: 16px;
     }
 
-    .site-footer__social {
-        width: 44px;
-        height: 44px;
+    .site-footer__social img {
+        width: 35px;
+        height: 35px;
     }
 }
 
