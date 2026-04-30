@@ -5232,7 +5232,8 @@ body {
     .docs-white__head-link svg {
         position: absolute;
         right: -20px;
-        top: 14px;
+        width: 9px;
+        top: 15px;
     }
 
     .docs-white__head-link {
@@ -5490,8 +5491,8 @@ body {
             rgba(0, 0, 0, 0.38) 58%,
             rgba(0, 0, 0, 0) 78%
         );
-        height: 170px;
-        top: 428px;
+        height: 180px;
+        top: 458px;
         z-index: 1;
     }
 
