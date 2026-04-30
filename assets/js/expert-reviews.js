@@ -136,6 +136,82 @@
     update(true);
   }
 
+  function formatPhoneValue(value) {
+    var digits = String(value || "").replace(/\D/g, "");
+
+    if (digits.charAt(0) === "8") {
+      digits = "7" + digits.slice(1);
+    }
+
+    if (digits.charAt(0) !== "7") {
+      digits = "7" + digits;
+    }
+
+    digits = digits.slice(0, 11);
+
+    var result = "+7";
+    var code = digits.slice(1, 4);
+    var first = digits.slice(4, 7);
+    var second = digits.slice(7, 9);
+    var third = digits.slice(9, 11);
+
+    if (code) {
+      result += " (" + code;
+    }
+
+    if (code.length === 3) {
+      result += ")";
+    }
+
+    if (first) {
+      result += " " + first;
+    }
+
+    if (second) {
+      result += "-" + second;
+    }
+
+    if (third) {
+      result += "-" + third;
+    }
+
+    return result;
+  }
+
+  function initPhoneMasks() {
+    Array.prototype.forEach.call(document.querySelectorAll('input[type="tel"]'), function (input) {
+      input.setAttribute("inputmode", "tel");
+      input.setAttribute("maxlength", "18");
+
+      function syncValue() {
+        var digits = input.value.replace(/\D/g, "");
+
+        if (!digits) {
+          input.value = "";
+          return;
+        }
+
+        input.value = formatPhoneValue(input.value);
+      }
+
+      input.addEventListener("focus", function () {
+        if (!input.value) {
+          input.value = "+7 (";
+        }
+      });
+
+      input.addEventListener("input", syncValue);
+
+      input.addEventListener("blur", function () {
+        if (input.value.replace(/\D/g, "").length <= 1) {
+          input.value = "";
+        }
+      });
+
+      syncValue();
+    });
+  }
+
   function init() {
     var header = document.querySelector(".site-header");
     var headerToggle = header ? header.querySelector("[data-header-toggle]") : null;
@@ -233,6 +309,8 @@
         setModalState(true);
       }
     }
+
+    initPhoneMasks();
 
     Array.prototype.forEach.call(document.querySelectorAll(".expert-reviews"), function (root) {
       initSlider(root, {

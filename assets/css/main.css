@@ -4910,11 +4910,16 @@ body {
     .hero_img img {
         display: block;
         width: 100%;
-        height: 100%;
     }
 
     .hero_img {
         height: 100%;
+        top: -30px;
+    }
+
+    .single .hero_img {
+        height: 100%;
+        top: -90px;
     }
 
     .service-hero__breadcrumbs span:last-child {
@@ -7182,6 +7187,13 @@ body {
         margin-top: 92px;
         padding-right: 0;
         padding-left: 12px;
+    }
+
+    .single .hero_img img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     .blog-single__related-grid {
