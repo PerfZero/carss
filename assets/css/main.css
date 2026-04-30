@@ -1604,36 +1604,44 @@ body {
 
 .cars-modal__dialog {
     position: relative;
-    width: min(760px, calc(100vw - 32px));
-    max-height: calc(100vh - 32px);
+    width: 1635px;
     margin: 0;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 18px;
-    background: linear-gradient(
-        180deg,
-        rgba(25, 25, 26, 0.98),
-        rgba(12, 12, 13, 0.98)
-    );
-    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.42);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 58px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.06) 0 18%,
+            transparent 18% 82%,
+            rgba(255, 255, 255, 0.05) 82% 100%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(255, 255, 255, 0.1),
+            transparent 28%
+        ),
+        linear-gradient(180deg, rgba(24, 24, 25, 0.99), rgba(4, 4, 5, 0.99));
+    box-shadow: 0 34px 90px rgba(0, 0, 0, 0.54);
     overflow: auto;
 }
 
 .cars-modal__content {
-    padding: 40px 34px 34px;
+    padding: 77px 88px 100px;
 }
 
 .cars-modal__close {
     position: absolute;
-    top: 18px;
-    right: 18px;
+    top: 62px;
+    right: 64px;
     width: 46px;
     height: 46px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.04);
-    color: #f4f4f4;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    color: var(--cars-accent);
     font-family: inherit;
-    font-size: 28px;
+    font-size: 60px;
+    font-weight: 200;
     line-height: 1;
     cursor: pointer;
 }
@@ -1648,12 +1656,19 @@ body {
 }
 
 .cars-modal__title {
-    margin: 18px 0 0;
-    max-width: 560px;
-    font-size: 42px;
-    line-height: 110%;
-    font-weight: 500;
-    color: #f7f7f7;
+    margin: 0 auto;
+    max-width: 1020px;
+    font-size: 52px;
+    line-height: 1.18;
+    letter-spacing: -0.055em;
+    font-weight: 300;
+    text-align: center;
+    color: #cfcfcf;
+}
+
+.cars-modal__title strong {
+    color: #fff;
+    font-weight: 800;
 }
 
 .cars-modal__text {
@@ -1665,22 +1680,64 @@ body {
 }
 
 .cars-modal__form {
-    margin-top: 34px;
+    margin-top: 50px;
     max-width: none;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 56px 46px;
 }
 
-.cars-modal__footer {
-    align-items: flex-start;
+.cars-modal .cars-modal__footer {
+    grid-column: 1 / -1;
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
 }
 
 .cars-modal .contact-form__consent {
-    max-width: 360px;
+    max-width: 430px;
 }
 
 .cars-modal .contact-form__consent a {
     color: inherit;
     text-decoration: underline;
     text-underline-offset: 3px;
+}
+
+.cars-modal__submit-group {
+    display: grid;
+    justify-items: center;
+    gap: 38px;
+    width: min(520px, 100%);
+}
+
+.cars-modal__submit-group .contact-form__submit {
+    min-width: 100%;
+}
+
+.cars-modal .cars-form-notice {
+    grid-column: 1 / -1;
+}
+
+.cars-modal .contact-form__field input,
+.cars-modal .contact-form__field select {
+    height: 124px;
+    text-align: left;
+    padding: 0 78px;
+}
+
+.cars-modal .contact-form__field--select::after {
+    right: 58px;
+}
+
+.cars-modal .contact-form__submit {
+    min-height: 102px;
+    font-size: 23px;
+}
+
+.cars-modal .contact-form__consent {
+    align-items: flex-start;
+    font-size: 18px;
 }
 
 .pk {
@@ -5500,24 +5557,25 @@ body {
     .cars-modal__dialog {
         width: calc(100vw - 20px);
         max-height: calc(100vh - 20px);
-        border-radius: 14px;
+        border-radius: 28px;
     }
 
     .cars-modal__content {
-        padding: 22px 16px 20px;
+        padding: 44px 18px 28px;
     }
 
     .cars-modal__close {
-        top: 12px;
-        right: 12px;
+        top: -2px;
+        right: 3px;
         width: 40px;
         height: 40px;
-        font-size: 24px;
+        font-size: 42px;
     }
 
     .cars-modal__title {
         max-width: none;
-        font-size: 28px;
+        font-size: 21px;
+        text-align: center;
     }
 
     .cars-modal__text {
@@ -5526,7 +5584,40 @@ body {
     }
 
     .cars-modal__form {
-        margin-top: 24px;
+        margin-top: 32px;
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .cars-modal .contact-form__field input,
+    .cars-modal .contact-form__field select {
+        height: 64px;
+        padding: 0 24px;
+        text-align: left;
+    }
+
+    .cars-modal .contact-form__field--select::after {
+        right: 24px;
+    }
+
+    .cars-modal .cars-modal__footer {
+        gap: 24px;
+    }
+
+    .cars-modal__submit-group {
+        gap: 18px;
+    }
+
+    .cars-modal .contact-form__submit {
+        min-height: 58px;
+        font-size: 13px;
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .cars-modal .contact-form__consent {
+        max-width: 100%;
+        font-size: 12px;
     }
 
     .contact-process__note {

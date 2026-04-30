@@ -109,9 +109,10 @@ $modal_status = cars_get_request_form_status("modal_contact");
     <div class="cars-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="cars-modal-title">
         <button class="cars-modal__close" type="button" aria-label="Закрыть окно" data-modal-close="contact">×</button>
         <div class="cars-modal__content">
-            <p class="cars-modal__eyebrow">Связаться с нами</p>
-            <h2 class="cars-modal__title" id="cars-modal-title">Оставьте имя и телефон</h2>
-            <p class="cars-modal__text">Мы свяжемся с вами в ближайшее время и подскажем следующий шаг по вашей задаче.</p>
+            <h2 class="cars-modal__title" id="cars-modal-title">
+                Получите <strong>подробный разбор</strong> вашей<br>
+                ситуации с экспертом <strong>бесплатно</strong>
+            </h2>
 
             <form class="contact-form cars-modal__form" action="<?php echo esc_url(
                 cars_get_request_form_action_url(),
@@ -137,14 +138,24 @@ $modal_status = cars_get_request_form_status("modal_contact");
                     >
                 </label>
 
+                <label class="contact-form__field contact-form__field--select">
+                    <select name="contact_type" aria-label="Способ связи">
+                        <option value="call">Позвоните мне</option>
+                        <option value="telegram">Написать в Telegram</option>
+                        <option value="max">Написать в MAX</option>
+                    </select>
+                </label>
+
                 <div class="contact-form__footer cars-modal__footer">
-                    <label class="contact-form__consent">
-                        <input type="checkbox" name="consent" required>
-                        <span>
-                            Отправляя форму, вы <strong><a href="<?php echo $privacy_url; ?>">даете согласие на обработку персональных данных</a></strong>
-                        </span>
-                    </label>
-                    <button class="contact-form__submit" type="submit">Свяжитесь со мной</button>
+                    <div class="cars-modal__submit-group">
+                        <button class="contact-form__submit" type="submit">Получить консультацию</button>
+                        <label class="contact-form__consent">
+                            <input type="checkbox" name="consent" required>
+                            <span>
+                                Отправляя форму, вы <strong><a href="<?php echo $privacy_url; ?>">даете согласие на обработку персональных данных</a></strong>
+                            </span>
+                        </label>
+                    </div>
                 </div>
             </form>
         </div>
